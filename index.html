@@ -189,7 +189,7 @@
             display: flex;
             flex-direction: column; /* Siempre columna para apilar el nombre en la parte superior */
             align-items: center; /* Centra los elementos horizontalmente */
-            justify-content: center; /* Centra el contenido verticalmente */
+            justify-content: flex-start; /* Alinea el contenido al inicio para un mejor scroll vertical */
             text-align: center;
             padding: 2rem;
             width: 100%;
@@ -266,7 +266,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Cubre el área manteniendo la relación de aspecto */
-            object-position: center top; /* Alinea la parte superior de la imagen con la parte superior del contenedor */
+            object-position: center 20%; /* Ajusta el enfoque vertical. Prueba valores como 0% (top), 15%, 25%, o incluso 50% (center) según cómo estén compuestas tus imágenes. */
             display: block;
         }
         @media (min-width: 768px) {
@@ -367,7 +367,7 @@
 
         <section id="artistas" class="section">
              <div class="bg-zinc-900 shadow-2xl rounded-xl" style="padding: 0; border-radius: 0;">
-                <h2 class="text-4xl font-bold text-emerald-400 pt-8 sm:pt-10 mb-6 text-center">Los Artistas de ESOTICO</h2>
+                
                 <div id="artist-slider-container" class="relative w-full flex-grow">
                     <div id="artist-slider" class="flex transition-transform duration-700 ease-in-out h-full">
                         </div>
@@ -385,7 +385,7 @@
 
         <section id="musica" class="section">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-900 shadow-2xl rounded-xl p-8 sm:p-10">
-                <h2 class="text-4xl font-bold text-emerald-400 mb-10 text-center">La Música de ESOTICO</h2>
+                 
                 <p class="text-lg text-gray-300 mb-12 text-center max-w-4xl mx-auto">
                     Aquí encontrarás PROXIMAMENTE una selección de las canciones que definen el sonido de ESOTICO, fruto de la colaboración entre nuestros artistas. Cada tema es una muestra de la diversidad y la sinergia que impulsa este proyecto.
                 </p>
@@ -396,9 +396,9 @@
 
         <section id="escuchar" class="section">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-900 shadow-2xl rounded-xl p-8 sm:p-10">
-                <h2 class="text-4xl font-bold text-emerald-400 mb-10 text-center">Dónde Escuchar ESOTICO</h2>
+                
                 <p class="text-lg text-gray-300 mb-12 text-center max-w-4xl mx-auto">
-                    Sumérgete en el sonido de ESOTICO en tus plataformas de streaming favoritas. Haz clic en los enlaces para acceder directamente a la música y vivir la experiencia completa.
+                    Sumérgete en el sonido de ESOTICO en tus plataformas de streaming favoritas.
                 </p>
                 <div class="space-y-8 max-w-2xl mx-auto">
                     <div>
@@ -411,12 +411,7 @@
                         
                         </ul>
                     </div>
- <div>
-                        <h3 class="text-3xl font-semibold text-emerald-300 mb-4">SoundCloud</h3>
-                        <ul class="list-disc list-inside space-y-3 text-lg">
-                            <li><a href="https://m.soundcloud.com/nilesilog" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:text-emerald-300 hover:underline transition-colors duration-200">Nile Silog en SoundCloud (incluye temas de ESOTICO)</a></li>
-                                </ul>
-                    </div>
+ 
 
 
                     <div>
