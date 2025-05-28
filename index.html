@@ -84,7 +84,7 @@
         /* Inner content divs within sections (e.g., project intro, music list) */
         .section > div:not(#artist-slider-container) { /* Excluye el contenedor del slider de esta regla */
             width: 100%;
-            max-width: 70%; /* Ancho de contenido estándar */
+            max-width: 90%; /* Ancho de contenido estándar */
             margin-left: auto;
             margin-right: auto;
             padding: 2rem; /* Padding estándar para bloques de contenido */
@@ -260,6 +260,7 @@
 
         /* Content Wrapper inside each slide */
         .artist-slide .content-wrapper {
+            transform: translateY(-10%);
             position: relative;
             z-index: 2;
             display: flex;
@@ -274,11 +275,12 @@
             max-height: 100%; /* Asegura que el content wrapper no desborde la altura del slide */
             overflow-y: auto; /* Permite el desplazamiento interno si el contenido es demasiado alto */
             -webkit-overflow-scrolling: touch; /* Desplazamiento suave en iOS */
-            gap: 2rem; /* Espacio entre el nombre y la fila de imagen/video */
+            gap: 1rem; /* Espacio entre el nombre y la fila de imagen/video */
         }
 
         /* Contenedor para la imagen de perfil y los videos para que estén uno al lado del otro en escritorio */
         .image-and-videos-row {
+            
             display: flex;
             flex-direction: column; /* Apila la imagen y los videos en móvil */
             align-items: center; /* Centra los elementos horizontalmente en móvil */
@@ -431,7 +433,7 @@
     <main>
         <section id="proyecto" class="section active">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-900 shadow-2xl rounded-xl p-8 sm:p-10 text-center">
-                <h2 class="text-5xl sm:text-6xl font-extrabold text-emerald-400 mb-6 leading-tight">ESOTICO</h2>
+                <h2 class="text-5xl sm:text-6xl font-extrabold text-emerald-400 mb-6 leading-tight">TEMPORADA ESOTICA</h2>
                 <p class="text-xl sm:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
                     Una colisión de talentos. Un viaje sonoro sin precedentes.
                 </p>
