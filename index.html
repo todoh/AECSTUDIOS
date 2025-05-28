@@ -38,8 +38,8 @@
             position: fixed; /* Posición fija */
             bottom: 0;
             width: 100%;
-            z-index: 50; /* Asegura que el pie de página esté encima */
-            height: 64px; /* Altura consistente para el pie de página */
+            z-index: 0; /* Asegura que el pie de página esté encima */
+            height: 0px; /* Altura consistente para el pie de página */
         }
 
         /* Main content area */
@@ -84,7 +84,7 @@
         /* Inner content divs within sections (e.g., project intro, music list) */
         .section > div:not(#artist-slider-container) { /* Excluye el contenedor del slider de esta regla */
             width: 100%;
-            max-width: 90%; /* Ancho de contenido estándar */
+            max-width: 80%; /* Ancho de contenido estándar */
             margin-left: auto;
             margin-right: auto;
             padding: 2rem; /* Padding estándar para bloques de contenido */
