@@ -84,7 +84,7 @@
         /* Inner content divs within sections (e.g., project intro, music list) */
         .section > div:not(#artist-slider-container) { /* Excluye el contenedor del slider de esta regla */
             width: 100%;
-            max-width: 1280px; /* Ancho de contenido estándar */
+            max-width: 70%; /* Ancho de contenido estándar */
             margin-left: auto;
             margin-right: auto;
             padding: 2rem; /* Padding estándar para bloques de contenido */
@@ -112,7 +112,7 @@
         #artistas {
             padding: 0; /* Sin padding en la sección misma, el contenido dentro de bg-zinc-900 lo tendrá */
         }
-        #artistas .bg-zinc-900 {
+        #artistas .artist-section-content { /* Contenedor principal de la sección artistas */
             width: 100%;
             height: 100%; /* Ocupa la altura completa de la sección padre */
             border-radius: 0;
@@ -122,20 +122,95 @@
             justify-content: flex-start;
             box-sizing: border-box;
             overflow: hidden; /* Oculta la barra de desplazamiento para este contenedor */
+            position: relative; /* Contenedor para posicionamiento absoluto de hijos */
         }
-        #artistas h2 {
-            padding-top: 2rem; /* Padding para el título dentro de bg-zinc-900 */
-            padding-left: 1rem;
-            padding-right: 1rem;
+
+        /* Artist Grid View */
+        #artist-grid-view {
+            /* flex-grow: 1; Removido */
+            position: absolute;
+            bottom: 6%;
+            left: 0;
+            width: 100%;
+            height: 125px; /* Altura ajustada para una sola fila de ítems cuadrados */
+            background-color: theme('colors.zinc.900'); /* Fondo para opacidad sobre el slider */
+            z-index: 2; /* Encima del slider */
+            overflow-x: auto; /* Permite el desplazamiento horizontal */
+            overflow-y: hidden; /* Oculta el desplazamiento vertical */
+            -webkit-overflow-scrolling: touch; /* Desplazamiento suave en iOS */
+            display: flex; /* Para centrar #artist-grid verticalmente */
+            align-items: center; /* Centra #artist-grid verticalmente */
+            padding: 0; /* El padding interno lo gestionará #artist-grid */
         }
-        #artistas p {
-            padding-bottom: 2rem; /* Padding para el texto de introducción dentro de bg-zinc-900 */
-            margin-bottom: 0; /* Elimina el margen predeterminado para controlar el espaciado con flex gap */
-            padding-left: 1rem;
-            padding-right: 1rem;
+        .artist-grid-item {
+           
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border-radius: 0.5rem; /* rounded-lg, reducido desde rounded-xl */
+            overflow: hidden;
+            background-color: theme('colors.zinc.800'); 
+            width: 100px; /* Ancho fijo para cada artista */
+            flex-shrink: 0; /* Evita que el ítem se encoja en el contenedor flex */
+            padding: 0.15rem; /* p-1, padding interno del ítem */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+        }
+
+        .artist-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .artist-grid-item img {
+            width: 100%;
+            height: auto; /* La altura se derivará del aspect-ratio */
+            aspect-ratio: 1 / 1; /* Hace la imagen cuadrada */
+            object-fit: cover;
+            border-radius: 0.25rem; /* rounded-md, reducido desde rounded-lg */
+            border: 1px solid theme('colors.emerald.500'); /* Borde más fino */
+            margin-bottom: 0.25rem; /* mb-1 */
+        }
+        /* Media queries para altura de imagen eliminadas, aspect-ratio se encarga */
+
+        .artist-grid-item span {
+            font-weight: 600; /* semibold */
+            color: theme('colors.emerald.300');
+            font-size: 0.65rem; /* Reducido para encajar mejor */
+            line-height: 1.2; /* Ajustado para el nuevo tamaño de fuente */
+            display: block; /* Asegura que el margin-bottom de la imagen tenga efecto */
+            width: 100%; /* Para que el text-align center y text-overflow funcionen bien */
+            white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+            overflow: hidden; /* Oculta el texto que desborda */
+            text-overflow: ellipsis; /* Añade "..." al texto desbordado */
+        }
+
+        /* Estilos para el contenedor de la cuadrícula de artistas */
+        #artist-grid {
+            display: flex; /* Organiza los ítems en una fila */
+            flex-wrap: nowrap; /* Evita que los ítems salten a la siguiente línea */
+            gap: 0.75rem; /* Espacio entre ítems (12px) */
+            padding: 0.5rem 1rem; /* Padding vertical y horizontal para el contenido de la cuadrícula */
+            width: max-content; /* Permite que el contenedor se expanda con los ítems */
         }
 
         /* Artist Slider Container */
+        #artist-slider-view {
+            /* flex-grow: 1; Removido */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Tailwind w-full ya lo hace */
+            height: 100%; /* Tailwind h-full ya lo hace */
+            z-index: 1; /* Debajo de la cuadrícula */
+            display: flex; /* Flex para los slides */
+            flex-direction: column;
+            overflow: hidden; /* Oculta la barra de desplazamiento interna */
+        }
+
         #artist-slider-container {
             width: 100%;
             margin-left: 0;
@@ -366,37 +441,48 @@
         </section>
 
         <section id="artistas" class="section">
-             <div class="bg-zinc-900 shadow-2xl rounded-xl" style="padding: 0; border-radius: 0;">
-                
-                <div id="artist-slider-container" class="relative w-full flex-grow">
-                    <div id="artist-slider" class="flex transition-transform duration-700 ease-in-out h-full">
+             <div class="bg-zinc-900 shadow-2xl rounded-xl artist-section-content">
+                <!-- Clases de layout de Tailwind eliminadas, se manejan por CSS -->
+                <div id="artist-grid-view" class="w-full">
+                    <div id="artist-grid">
                         </div>
-                    <button id="prev-artist" class="absolute left-4 top-1/2 -translate-y-1/2 bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors duration-200 focus:outline-none z-10">
-                        ❮
+                </div>
+
+                <!-- La clase flex-grow se elimina de aquí -->
+                <div id="artist-slider-view" class="relative w-full h-full hidden">
+                    <button id="back-to-grid" class="absolute top-4 left-4 bg-zinc-700 text-white p-2 rounded-full shadow-lg hover:bg-zinc-600 transition-colors duration-200 focus:outline-none z-20">
+                        ← Volver a la Cuadrícula
                     </button>
-                    <button id="next-artist" class="absolute right-4 top-1/2 -translate-y-1/2 bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors duration-200 focus:outline-none z-10">
-                        ❯
-                    </button>
-                    <div id="slider-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                        </div>
+                    <div id="artist-slider-container" class="relative w-full flex-grow">
+                        <div id="artist-slider" class="flex transition-transform duration-700 ease-in-out h-full">
+                            </div>
+                        <button id="prev-artist" class="absolute left-4 top-1/2 -translate-y-1/2 bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors duration-200 focus:outline-none z-10">
+                            ❮
+                        </button>
+                        <button id="next-artist" class="absolute right-4 top-1/2 -translate-y-1/2 bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors duration-200 focus:outline-none z-10">
+                            ❯
+                        </button>
+                        <div id="slider-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                            </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="musica" class="section">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-900 shadow-2xl rounded-xl p-8 sm:p-10">
-                 
+                 <h2 class="text-5xl sm:text-6xl font-extrabold text-emerald-400 mb-6 leading-tight">Música</h2>
                 <p class="text-lg text-gray-300 mb-12 text-center max-w-4xl mx-auto">
                     Aquí encontrarás PROXIMAMENTE una selección de las canciones que definen el sonido de ESOTICO, fruto de la colaboración entre nuestros artistas. Cada tema es una muestra de la diversidad y la sinergia que impulsa este proyecto.
                 </p>
-                
-                   
+                <div id="project-music-list" class="flex flex-wrap justify-center gap-4 text-xl text-gray-200 max-w-2xl mx-auto">
+                    </div>
             </div>
         </section>
 
         <section id="escuchar" class="section">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-900 shadow-2xl rounded-xl p-8 sm:p-10">
-                
+                <h2 class="text-5xl sm:text-6xl font-extrabold text-emerald-400 mb-6 leading-tight">Dónde Escuchar</h2>
                 <p class="text-lg text-gray-300 mb-12 text-center max-w-4xl mx-auto">
                     Sumérgete en el sonido de ESOTICO en tus plataformas de streaming favoritas.
                 </p>
@@ -407,20 +493,14 @@
                             <li><a href="https://www.youtube.com/@NileSilog" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:text-emerald-300 hover:underline transition-colors duration-200">NILE SILOG</a></li>
                             <li><a href="https://www.youtube.com/@ZetaKlan" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:text-emerald-300 hover:underline transition-colors duration-200">Z-KLAN</a></li>
                             <li><a href="https://www.youtube.com/@Lilxusti" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:text-emerald-300 hover:underline transition-colors duration-200">XUSTY</a></li>
-
-                        
                         </ul>
                     </div>
- 
-
-
                     <div>
                         <h3 class="text-3xl font-semibold text-emerald-300 mb-4">Spotify</h3>
                         <ul class="list-disc list-inside space-y-3 text-lg">
                             <li><a href="https://open.spotify.com/intl-es/artist/4AMhluHVZdsE3dSoSqsy4p" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:text-emerald-300 hover:underline transition-colors duration-200">NILE SILOG</a></li>
                             <li><a href="https://open.spotify.com/intl-es/artist/39HMzK7IKvCKjrPtOqNEjT" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:text-emerald-300 hover:underline transition-colors duration-200">Z-KLAN</a></li>
                             <li><a href="https://open.spotify.com/intl-es/artist/1p90pBZ14p7vJ4Rd4Fyem0" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:text-emerald-300 hover:underline transition-colors duration-200">DESKUIDAO</a></li>
-
                         </ul>
                     </div>
                 </div>
@@ -435,7 +515,7 @@
 
     <script>
         // Data for all artists, including image URLs and YouTube embed URLs
-        const allArtistsData = [
+      const allArtistsData = [
             { name: "Nile Silog", imageUrl: "nilesilogb.jpg", secondaryImageUrl: "nilesilog.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/01E7KrFo13s?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/OcWjsZ3D454?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/Ao75vI2iEhY?autoplay=0&controls=1&showinfo=0&rel=0"], description: "Nile Silog es un artista innovador que fusiona ritmos electrónicos con melodías introspectivas, creando paisajes sonoros únicos. Su visión transforma cada pista en una experiencia inmersiva.", titles: ["Último sigilo", "Talisman", "Ohptimush Praime", "Tetric", "Zona Sureña", "Selva Cálida"] },
             { name: "Z Klan", imageUrl: "zklanb.jpg", secondaryImageUrl: "zklan.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/8_mDpon9Xac?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/txsOaOpx2YI?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/yVirp4ItfBw?autoplay=0&controls=1&showinfo=0&rel=0"], description: "Z Klan aporta una energía cruda y letras poderosas, destacándose por su habilidad para narrar historias complejas con un estilo inconfundible. Su música es un reflejo audaz de la realidad.", titles: ["Ohptimush Praime", "Nueva Era", "Ritmo Urbano"] },
             { name: "Xusty", imageUrl: "xustyb.jpg", secondaryImageUrl: "xusty.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/HSDDRRDlAnk?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/thXQdX4bh9s?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/jNceyUa405g?autoplay=0&controls=1&showinfo=0&rel=0"], description: "Xusty es conocido por su versatilidad y su capacidad para transitar entre géneros con fluidez. Sus composiciones son un equilibrio perfecto entre lo experimental y lo melódico, siempre sorprendiendo a su audiencia.", titles: ["Sueños Lejanos", "Frecuencia", "Luz Interior"] },
@@ -462,6 +542,11 @@
             const nextArtistButton = document.getElementById('next-artist');
             const sliderDotsContainer = document.getElementById('slider-dots');
             const artistSliderContainer = document.getElementById('artist-slider-container'); // Get the slider container
+            const artistGridView = document.getElementById('artist-grid-view'); // New: Artist Grid View container
+            const artistSliderView = document.getElementById('artist-slider-view'); // New: Artist Slider View container
+            const artistGrid = document.getElementById('artist-grid'); // New: Artist Grid container
+            const backToGridButton = document.getElementById('back-to-grid'); // New: Back to Grid button
+
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
             // Function to update active navigation
@@ -476,6 +561,13 @@
                 });
             }
             
+            // Function to stop all videos in a given element
+            function stopAllVideos(container) {
+                container.querySelectorAll('iframe').forEach(iframe => {
+                    iframe.src = ''; // Stop video playback
+                });
+            }
+
             // Add event listeners to navigation links
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
@@ -484,11 +576,9 @@
 
                     if (currentActiveSection) {
                         currentActiveSection.classList.remove('active');
-                        // Stop videos in the outgoing slide (only applicable for the 'artistas' section)
+                        // Stop videos in the outgoing section if it's 'artistas'
                         if (currentActiveSection.id === 'artistas') {
-                            currentActiveSection.querySelectorAll('iframe').forEach(iframe => {
-                                iframe.src = ''; // Stop video playback
-                            });
+                            stopAllVideos(currentActiveSection);
                         }
                     }
 
@@ -496,24 +586,9 @@
                     const targetSection = document.getElementById(targetId);
                     if (targetSection) {
                         targetSection.classList.add('active');
-                        // Play videos in the incoming slide if it's the 'artistas' section
-                        if (targetId === 'artistas') {
-                             // Reinitialize videos of the active slide after the transition begins
-                            setTimeout(() => {
-                                const currentSlide = artistSlider.children[currentArtistIndex];
-                                if (currentSlide) {
-                                    const iframes = currentSlide.querySelectorAll('iframe');
-                                    const artistData = esoticoArtistsData[currentArtistIndex];
-                                    iframes.forEach((iframe, idx) => {
-                                        if (artistData.youtubeEmbedUrls && artistData.youtubeEmbedUrls[idx]) {
-                                            // Ensure the video URL has autoplay and loop parameters if desired
-                                            // For example: videoSrc += "?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID";
-                                            // Note: Autoplay with sound is often blocked by browsers unless muted
-                                            iframe.src = artistData.youtubeEmbedUrls[idx];
-                                        }
-                                    });
-                                }
-                            }, 700); // Delay to ensure the section is fully active
+                        // Handle 'artistas' section specific display
+                        if (targetId === 'artistas') { 
+                            showArtistFromGrid(0); // Muestra directamente el slider con Nile Silog (índice 0)
                         }
                     }
                     updateActiveNav(targetId);
@@ -651,12 +726,53 @@
                 });
             }
 
+            // New: Function to render the artist grid
+            function renderArtistGrid() {
+                if (artistGrid) {
+                    artistGrid.innerHTML = ''; // Clear existing grid items
+                    esoticoArtistsData.forEach((artist, index) => {
+                        const gridItem = document.createElement('div');
+                        gridItem.className = 'artist-grid-item';
+                        gridItem.dataset.index = index; // Store the index for easy lookup
+
+                        const img = document.createElement('img');
+                        img.src = artist.secondaryImageUrl || `https://placehold.co/400x400/065f46/ffffff?text=${artist.name}`; // Fallback placeholder
+                        img.alt = `Imagen de ${artist.name}`;
+                        gridItem.appendChild(img);
+
+                        const nameSpan = document.createElement('span');
+                        nameSpan.textContent = artist.name;
+                        gridItem.appendChild(nameSpan);
+
+                        gridItem.addEventListener('click', () => showArtistFromGrid(index));
+                        artistGrid.appendChild(gridItem);
+                    });
+                }
+            }
+
+            // New: Function to show the slider from the grid view
+            function showArtistFromGrid(index) {
+                artistGridView.classList.add('hidden'); // Ocultar la cuadrícula cuando se muestra el slider
+                artistSliderView.classList.remove('hidden'); // Show the slider
+                currentArtistIndex = index; // Set the current artist index
+                showArtist(currentArtistIndex); // Show the selected artist in the slider
+            }
+
             // Add event listeners to artist navigation buttons
             if (prevArtistButton) {
                 prevArtistButton.addEventListener('click', () => showArtist(currentArtistIndex - 1));
             }
             if (nextArtistButton) {
                 nextArtistButton.addEventListener('click', () => showArtist(currentArtistIndex + 1));
+            }
+
+            // New: Add event listener for the "Back to Grid" button
+            if (backToGridButton) {
+                backToGridButton.addEventListener('click', () => {
+                    artistSliderView.classList.add('hidden'); // Hide the slider
+                    artistGridView.classList.remove('hidden'); // Show the grid
+                    stopAllVideos(artistSliderView); // Stop any playing videos in the slider
+                });
             }
 
             // Slider navigation with mouse wheel
@@ -681,11 +797,6 @@
                 }, { passive: false }); // Use passive: false to allow preventDefault
             }
 
-            // Display the first artist with a small delay to ensure rendering
-            setTimeout(() => {
-                showArtist(currentArtistIndex); 
-            }, 100);
-
             // Populate the project music list
             if (projectMusicListContainer) {
                 const allProjectSongs = new Set();
@@ -709,9 +820,16 @@
 
             // Recalculate slider position on window resize
             window.addEventListener('resize', () => {
-                showArtist(currentArtistIndex); // Re-center the current slide
+                // Only re-center if the slider is currently visible
+                if (!artistSliderView.classList.contains('hidden')) {
+                    showArtist(currentArtistIndex); // Re-center the current slide
+                }
             });
 
+            // Initial setup: Render the grid and ensure the 'artistas' section starts with the grid view
+            renderArtistGrid();
+            // The 'proyecto' section is active by default, so 'artistas' should be hidden initially.
+            // When 'artistas' is navigated to, the nav-link click handler will manage its visibility.
         });
 
         // This function is not currently used, can be removed or kept if planning to use for dynamic text formatting
