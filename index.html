@@ -404,7 +404,7 @@
     <header class="bg-black text-gray-100 shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20 sm:h-24">
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">AEC STUDIOS presenta <span class="text-red-400">ESOTICO</span></h1>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">AEC <span class="text-red-400">STUDIOS</span></h1>
                 <nav class="hidden md:flex space-x-6">
                     <button data-target="proyecto" class="nav-link text-gray-300 hover:text-white px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Proyecto</button>
                     <button data-target="artistas" class="nav-link text-gray-300 hover:text-white px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Artistas</button>
@@ -519,16 +519,76 @@
     <script>
         // Data for all artists, including image URLs and YouTube embed URLs
       const allArtistsData = [
-            { name: "Nile Silog", imageUrl: "nilesilogb.jpg", secondaryImageUrl: "nilesilog.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/01E7KrFo13s?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/OcWjsZ3D454?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/Ao75vI2iEhY?autoplay=0&controls=1&showinfo=0&rel=0"], description: "Nile Silog es un artista innovador que fusiona ritmos electrónicos con melodías introspectivas, creando paisajes sonoros únicos. Su visión transforma cada pista en una experiencia inmersiva.", titles: ["Último sigilo", "Talisman", "Ohptimush Praime", "Tetric", "Zona Sureña", "Selva Cálida"] },
-            { name: "Z Klan", imageUrl: "zklanb.jpg", secondaryImageUrl: "zklan.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/8_mDpon9Xac?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/txsOaOpx2YI?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/yVirp4ItfBw?autoplay=0&controls=1&showinfo=0&rel=0"], description: "Z Klan aporta una energía cruda y letras poderosas, destacándose por su habilidad para narrar historias complejas con un estilo inconfundible. Su música es un reflejo audaz de la realidad.", titles: ["Ohptimush Praime", "Nueva Era", "Ritmo Urbano"] },
-            { name: "Xusty", imageUrl: "xustyb.jpg", secondaryImageUrl: "xusty.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/HSDDRRDlAnk?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/thXQdX4bh9s?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/jNceyUa405g?autoplay=0&controls=1&showinfo=0&rel=0"], description: "Xusty es conocido por su versatilidad y su capacidad para transitar entre géneros con fluidez. Sus composiciones son un equilibrio perfecto entre lo experimental y lo melódico, siempre sorprendiendo a su audiencia.", titles: ["Sueños Lejanos", "Frecuencia", "Luz Interior"] },
-            { name: "Deskuidao", imageUrl: "deskuidaob.jpg", secondaryImageUrl: "deskuidao.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/Ree5iCJeQak?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/9RxRy9Iao84?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/34FvkYOmXkI?autoplay=0&controls=1&showinfo=0&rel=0"], description: "Deskuidao se caracteriza por su sonido auténtico y sus letras directas. Con una presencia escénica magnética, sus actuaciones son tan memorables como sus grabaciones, dejando una huella duradera.", titles: ["Revolución", "Caminos Cruzados", "Ecos del Ayer"] },
-            { name: "Needyls", imageUrl: "needylsb.jpg", secondaryImageUrl: "needyls.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/D4zY_ZQcyzc?autoplay=0&controls=1&showinfo=0&rel=0", "https://www.youtube.com/embed/NRt_uZSTOtw?autoplay=0&controls=1&showinfo=0&rel=0" ], description: "Needyls es un maestro de la producción y la experimentación sonora. Su trabajo detrás de la mesa de mezclas es tan impresionante como sus propias composiciones, aportando una calidad inigualable a cada proyecto.", titles: ["Profundidad", "Conexión", "El Origen"] },
-            { name: "EL COBRE", imageUrl: "elcobreb.jpg", secondaryImageUrl: "elcobre.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/pyCsZ_J0q24?autoplay=0&controls=1&showinfo=0&rel=0"  ], description: "EL COBRE trae una propuesta musical fresca y potente, combinando elementos clásicos con sonidos contemporáneos. Su estilo único y su energía en el escenario lo convierten en una fuerza a tener en cuenta.", titles: ["Fuerza Interior", "Renacer", "El Camino"] }
+             { name: "Nile Silog", imageUrl: "nilesilogb.jpg", secondaryImageUrl: "nilesilog.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/01E7KrFo13s?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/OcWjsZ3D454?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/Ao75vI2iEhY?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"], description: "Nile Silog es un artista innovador que fusiona ritmos electrónicos con melodías introspectivas, creando paisajes sonoros únicos. Su visión transforma cada pista en una experiencia inmersiva.", titles: ["Último sigilo", "Talisman", "Ohptimush Praime", "Tetric", "Zona Sureña", "Selva Cálida"] },
+            { name: "Z Klan", imageUrl: "zklanb.jpg", secondaryImageUrl: "zklan.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/8_mDpon9Xac?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/txsOaOpx2YI?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/yVirp4ItfBw?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"], description: "Z Klan aporta una energía cruda y letras poderosas, destacándose por su habilidad para narrar historias complejas con un estilo inconfundible. Su música es un reflejo audaz de la realidad.", titles: ["Ohptimush Praime", "Nueva Era", "Ritmo Urbano"] },
+            { name: "Xusty", imageUrl: "xustyb.jpg", secondaryImageUrl: "xusty.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/HSDDRRDlAnk?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/thXQdX4bh9s?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/jNceyUa405g?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"], description: "Xusty es conocido por su versatilidad y su capacidad para transitar entre géneros con fluidez. Sus composiciones son un equilibrio perfecto entre lo experimental y lo melódico, siempre sorprendiendo a su audiencia.", titles: ["Sueños Lejanos", "Frecuencia", "Luz Interior"] },
+            { name: "Deskuidao", imageUrl: "deskuidaob.jpg", secondaryImageUrl: "deskuidao.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/Ree5iCJeQak?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/9RxRy9Iao84?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/34FvkYOmXkI?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"], description: "Deskuidao se caracteriza por su sonido auténtico y sus letras directas. Con una presencia escénica magnética, sus actuaciones son tan memorables como sus grabaciones, dejando una huella duradera.", titles: ["Revolución", "Caminos Cruzados", "Ecos del Ayer"] },
+            { name: "Needyls", imageUrl: "needylsb.jpg", secondaryImageUrl: "needyls.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/D4zY_ZQcyzc?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3", "https://www.youtube.com/embed/NRt_uZSTOtw?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3" ], description: "Needyls es un maestro de la producción y la experimentación sonora. Su trabajo detrás de la mesa de mezclas es tan impresionante como sus propias composiciones, aportando una calidad inigualable a cada proyecto.", titles: ["Profundidad", "Conexión", "El Origen"] },
+            { name: "EL COBRE", imageUrl: "elcobreb.jpg", secondaryImageUrl: "elcobre.jpg", youtubeEmbedUrls: ["https://www.youtube.com/embed/pyCsZ_J0q24?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"  ], description: "EL COBRE trae una propuesta musical fresca y potente, combinando elementos clásicos con sonidos contemporáneos. Su estilo único y su energía en el escenario lo convierten en una fuerza a tener en cuenta.", titles: ["Fuerza Interior", "Renacer", "El Camino"] },
+            {
+                name: "Malder",
+                imageUrl: "malderb.jpg",
+                secondaryImageUrl: "malder.jpg",
+                youtubeEmbedUrls: [
+                    "https://www.youtube.com/embed/wPRmnshoE50?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/MVIpvOZQ3As?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/GNORkNPB05Y?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
+                ],
+                description: "DESCRIPCION PRONTO",
+                titles: []
+            },
+            {
+                name: "Vaultboy2337",
+                imageUrl: "vaultboy2337b.jpg",
+                secondaryImageUrl: "vaultboy2337.jpg",
+                youtubeEmbedUrls: [
+                    "https://www.youtube.com/embed/38x6sjdLeIE?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/KwKKsknwvYY?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
+                ],
+                description: "DESCRIPCION PRONTO",
+                titles: []
+            },
+            {
+                name: "Bajo Surcos",
+                imageUrl: "bajosurcosb.jpg",
+                secondaryImageUrl: "bajosurcos.jpg",
+                youtubeEmbedUrls: [
+                    "https://www.youtube.com/embed/2fUBdIAZLbw?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/WbGcoqaXLTw?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/ChSTjLhnMuo?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
+                
+                
+                ],
+                description: "DESCRIPCION PRONTO",
+                titles: []
+            },
+            {
+                name: "Shatin",
+                imageUrl: "shatinb.jpg",
+                secondaryImageUrl: "shatin.jpg",
+                youtubeEmbedUrls: [
+                    "https://www.youtube.com/embed/t-X55CI2yOM?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/r5BNkQtsmO8?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
+                ],
+                description: "DESCRIPCION PRONTO",
+                titles: []
+            },
+            {
+                name: "LOGA",
+                imageUrl: "logab.jpg",
+                secondaryImageUrl: "loga.jpg",
+                youtubeEmbedUrls: [
+                    "https://www.youtube.com/embed/nduPXxLNrwg?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/0DcdUa3Vtg8?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3",
+                    "https://www.youtube.com/embed/wCmFQdPCb74?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
+                ],
+                description: "DESCRIPCION PRONTO",
+                titles: []
+            }
         ];
 
         // Filter artists to include only those specified for the slider
-        const coreArtistsForSlider = ["Nile Silog", "Z Klan", "Deskuidao", "Xusty", "Needyls", "EL COBRE"];
+        const coreArtistsForSlider = ["Nile Silog", "Z Klan", "Deskuidao", "Xusty", "Needyls", "EL COBRE", "Malder", "Vaultboy2337", "Bajo Surcos", "Shatin", "LOGA"];
         const esoticoArtistsData = allArtistsData.filter(artist => coreArtistsForSlider.includes(artist.name));
 
         let currentArtistIndex = 0;
